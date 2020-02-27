@@ -19,8 +19,19 @@
             let functionName = 'jack' + parseInt(Math.random() * 1000000, 10)
             window[functionName] = function (result) {
                 if (result === 'success') {
-                    amount.innterText = amount.innterText - 1
+                    amount.innerText = amount.innerText - 1
                 }
+            }
+            script.src = 'http://jack.com:8002/pay?callback=' + functionName
+            document.body.appendChild(script)
+            script.onload = function(e){
+                e.currentTarget.remove()
+                delete window[functionName]//删除函数名用完就删除
+            }
+            script.onerror = function(e){
+                alert('fail')
+                e.currentTarget.remove()
+                delete window[functionName]
             }
         })
     </script>

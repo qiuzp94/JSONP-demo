@@ -10,7 +10,7 @@
 
 <body>
     <h5>
-        您的余额是<span id="amount">&&&amount&&&</span>
+        您的账号余额是<span id="amount">&&&amount&&&</span>
     </h5>
     <button id="button">支付一块钱</button>
     <script>
@@ -23,18 +23,24 @@
                 }
             }
             script.src = 'http://jack.com:8002/pay?callback=' + functionName
+            
             document.body.appendChild(script)
-            script.onload = function(e){
+            script.onload = function (e) {
                 e.currentTarget.remove()
                 delete window[functionName]//删除函数名用完就删除
             }
-            script.onerror = function(e){
+            script.onerror = function (e) {
                 alert('fail')
                 e.currentTarget.remove()
                 delete window[functionName]
             }
         })
     </script>
+
+
+
+
+
 </body>
 
 </html>
